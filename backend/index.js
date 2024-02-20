@@ -1,4 +1,6 @@
-import express from 'express'; //this is modular form of importing
+const express = require('express');
+// import express from 'express'; //this is modular form of importing
+require('dotenv').config();
 
 const app = express();
 
@@ -6,7 +8,7 @@ app.get('/', (req,res)=> {
     res.send('Server is ready');
 });
 
-app.get('/jokes', (req,res)=> {
+app.get('/api/jokes', (req,res)=> {
     const jokes = [
         {
             id:1,
@@ -32,7 +34,11 @@ app.get('/jokes', (req,res)=> {
     res.send(jokes);
 })
 
-const port = process.env.PORT || 4000 ;
+app.get('/api/new', (req,res)=> {
+    console.log("The port are same here");
+})
+
+const port = process.env.PORT;
 
 app.listen(port, ()=> {
     console.log(`server is running at port: ${port}`);

@@ -8,13 +8,21 @@ function App() {
   const [jokes, setJokes] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:4000/jokes')
-    .then((response)=> )
+    axios.get('/api/jokes')
+    .then((response)=> {
+      setJokes(response.data);
+    })
+    .catch((error)=> {
+      console.log(error);
+    })
   })
   return (
     <>
     <h1>This is a Demo webpage</h1>
     <p>Jokes: {jokes.length}</p>
+    <p> dets: {jokes.map((eachJoke, index) => (
+      <span key={index}>{eachJoke.name}</span>
+    ))}</p>
     </>
   )
 }
